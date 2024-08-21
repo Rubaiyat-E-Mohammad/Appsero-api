@@ -482,6 +482,40 @@ test("weMail Integration", async ({ request }) => {
     }
 });
 
+
+/* ---- FastSpring Integration ---- */
+test("FastSpring Integration", async ({ request }) => {
+    const fastspring_integration = new IntegrationPage(request);
+    let flag: boolean;
+
+    const fastspring_connection = await fastspring_integration.check_connection(selling_platform_name);
+
+    if (fastspring_connection == true) {
+        flag = true;
+    } else {
+        let fastspring_api_username: string = "EMH7QPZVSDQYEDBWNTCVQW";
+        let fastspring_api_password: string = "xdvKYJ0BQ_CcmQPNpEC1_w";
+
+        await fastspring_integration.connect_fastspring(
+            fastspring_api_username,
+            fastspring_api_password
+        );
+        const fastspring_new_connection =
+            await fastspring_integration.check_connection(selling_platform_name);
+
+        if (fastspring_new_connection == true) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+    }
+    if (flag == true) {
+        console.log(await fastspring_integration.fastspring_products(["appsero", "dokan", "donate-pay", "juizsocial"]));
+    } else {
+        console.log("Premium Product Not Found");
+    }
+});
+
 /* ------------------------ Product Delete ------------------------ */
 test("Prodcut Delete", async ({ request }) => {
     const product = new ProductPage(request);
