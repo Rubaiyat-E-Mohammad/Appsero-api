@@ -1,6 +1,0 @@
-[
-  [ 'appsero', [] ],
-  [ 'dokan', [] ],
-  [ 'donate-pay', [] ],
-  [ 'juizsocial', [] ]
-]
