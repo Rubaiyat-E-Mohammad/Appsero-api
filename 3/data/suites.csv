@@ -1,3 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"failed","Wed Aug 21 06:53:13 GMT 2024","Wed Aug 21 06:54:14 GMT 2024","60727","","main.spec.ts","","","","Login",""
-"failed","Wed Aug 21 06:54:15 GMT 2024","Wed Aug 21 06:57:16 GMT 2024","180698","","main.spec.ts","","","","Getting Dashboard Overview Details",""
