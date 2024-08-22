@@ -269,7 +269,7 @@ export class IntegrationPage {
 
     async paddle_products(selling_products_name: string[]) {
         const paddle_products = await this.request.get(
-            `${config.use?.baseURL!}/v1/integrations/fastspring-products`,
+            `${config.use?.baseURL!}/v1/integrations/paddle-products`,
             {
                 data: {
                     hosted_at: "paddle",

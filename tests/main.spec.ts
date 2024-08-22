@@ -516,6 +516,39 @@ test("FastSpring Integration", async ({ request }) => {
     }
 });
 
+/* ---- Paddle Integration ---- */
+test("Paddle Integration", async ({ request }) => {
+    const paddle_integration = new IntegrationPage(request);
+    let flag: boolean;
+
+    const paddle_connection = await paddle_integration.check_connection("paddle");
+
+    if (paddle_connection == true) {
+        flag = true;
+    } else {
+        let vendor_auth_code: string = "f5295421aab77af8d9ceda10781159f9";
+        let vendor_id: string = "108024";
+
+        await paddle_integration.connect_fastspring(
+            vendor_auth_code,
+            vendor_id
+        );
+        const paddle_new_connection =
+            await paddle_integration.check_connection("paddle");
+
+        if (paddle_new_connection == true) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+    }
+    if (flag == true) {
+        console.log(await paddle_integration.fastspring_products(["Test product"]));
+    } else {
+        console.log("Premium Product Not Found");
+    }
+});
+
 
 
 /* ------------------------ Product Delete ------------------------ */
