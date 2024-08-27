@@ -526,10 +526,10 @@ test("Paddle Integration", async ({ request }) => {
     if (paddle_connection == true) {
         flag = true;
     } else {
-        let vendor_auth_code: string = "f5295421aab77af8d9ceda10781159f9";
-        let vendor_id: string = "108024";
+        let vendor_auth_code: string = "b72c9815d3f5f54fecfea9c1b9ce2b060299486d5f89463f60";
+        let vendor_id: string = "1811";
 
-        await paddle_integration.connect_fastspring(
+        await paddle_integration.connect_paddle(
             vendor_auth_code,
             vendor_id
         );
@@ -549,7 +549,36 @@ test("Paddle Integration", async ({ request }) => {
     }
 });
 
+/* ---- Gumroad Integration ---- */
+test("Gumroad Integration", async ({ request }) => {
+    const gumroad_integration = new IntegrationPage(request);
+    let flag: boolean;
 
+    const gumroad_connection = await gumroad_integration.check_connection("gumroad");
+
+    if (gumroad_connection == true) {
+        flag = true;
+    } else {
+        let access_token: string = "C-nx03B5cWOhLum9NFM5lyPDW4TEcCq-FnwJi0wgj1Q";
+
+        await gumroad_integration.connect_gumroad(
+            access_token
+        );
+        const gumroad_new_connection =
+            await gumroad_integration.check_connection("gumroad");
+
+        if (gumroad_new_connection == true) {
+            flag = true;
+        } else {
+            flag = false;
+        }
+    }
+    if (flag == true) {
+        console.log(await gumroad_integration.fastspring_products(["rubs plugin", "Gumroad-test"]));
+    } else {
+        console.log("Premium Product Not Found");
+    }
+});
 
 /* ------------------------ Product Delete ------------------------ */
 test("Prodcut Delete", async ({ request }) => {
